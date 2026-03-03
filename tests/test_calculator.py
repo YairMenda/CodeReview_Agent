@@ -36,6 +36,11 @@ class TestCalculator:
         assert calc.divide(7, 2) == 3.5
         assert calc.divide(-10, 2) == -5.0
 
+    def test_divide_by_zero(self, calc):
+        """Test that division by zero raises ValueError."""
+        with pytest.raises(ValueError, match="Cannot divide by zero"):
+            calc.divide(10, 0)
+
     def test_power(self, calc):
         """Test power operation."""
         assert calc.power(2, 3) == 8
