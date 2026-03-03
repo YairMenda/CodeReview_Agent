@@ -1,0 +1,46 @@
+INTENTIONAL DEMO ISSUES TO FIX
+==============================
+
+These issues were left in the codebase intentionally for the AI code review agent to detect.
+Fix them when testing the CI/CD workflow.
+
+--------------------------------------------------------------------------------
+
+FILE: src/calculator/main.py
+--------------------------------------------------------------------------------
+
+1. [Line 7] Hardcoded DECIMAL_PRECISION
+   - Issue: DECIMAL_PRECISION = 2 is hardcoded
+   - Fix: Make it configurable via __init__ parameter or environment variable
+
+2. [Line 17] Missing type hints on add() method
+   - Issue: def add(self, a, b) has no type annotations
+   - Fix: def add(self, a: Union[int, float], b: Union[int, float]) -> Union[int, float]
+
+3. [Line 50] Missing type hints on sqrt() method
+   - Issue: def sqrt(self, n) has no type annotations
+   - Fix: def sqrt(self, n: Union[int, float]) -> float
+
+4. [Line 55] No negative number validation in sqrt()
+   - Issue: math.sqrt(n) will raise ValueError for negative numbers
+   - Fix: Add check: if n < 0: raise ValueError("Cannot calculate square root of negative number")
+
+--------------------------------------------------------------------------------
+
+FILE: src/calculator/utils.py
+--------------------------------------------------------------------------------
+
+5. [Line 20] Missing type hint on validate_number() parameter
+   - Issue: def validate_number(value) has no type annotation
+   - Fix: def validate_number(value: Any) -> bool
+
+6. [Line 38-47] No input validation in parse_expression()
+   - Issue: float() conversion has no try/except, invalid operator not checked
+   - Fix: Add proper validation and error handling
+
+--------------------------------------------------------------------------------
+
+SEVERITY LEVELS:
+- Critical: #4 (sqrt negative numbers)
+- Warning: #1 (hardcoded value), #6 (no validation)
+- Suggestion: #2, #3, #5 (missing type hints)
