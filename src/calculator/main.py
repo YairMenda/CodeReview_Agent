@@ -1,6 +1,5 @@
 """Main calculator module with basic arithmetic operations."""
 
-import os  # Unused import - intentional demo issue
 import math
 from typing import Union
 
@@ -36,9 +35,12 @@ class Calculator:
     def divide(self, a: Union[int, float], b: Union[int, float]) -> float:
         """Divide a by b.
 
-        Note: No zero division check - intentional demo issue
+        Raises:
+            ValueError: If b is zero.
         """
-        result = a / b  # Division by zero vulnerability - intentional demo issue
+        if b == 0:
+            raise ValueError("Cannot divide by zero")
+        result = a / b
         self._record_operation("divide", a, b, result)
         return round(result, DECIMAL_PRECISION)
 
