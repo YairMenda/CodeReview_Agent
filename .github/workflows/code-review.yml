@@ -94,5 +94,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `## AI Code Review\n\n${review}\n\n---\n*Powered by Claude Code*`
+              body: `## AI Code Review\n\n${review}\n\n---\n`
             });
